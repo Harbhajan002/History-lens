@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>History Lens</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <div class="app">
+
+   <!-- REPLACE the header block with this: -->
+<header class="header">
+  <div class="header-left">
+    <div class="logo">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+      </svg>
+    </div>
+    <h1>History Lens</h1>
+  </div>
+  <div class="header-right">
+    <button id="themeToggle" class="theme-btn" title="Toggle theme">☀️</button>
+    <div class="stats-pill" id="totalStats">— sites</div>
+  </div>
+</header>
+
+    <!-- Controls -->
+    <div class="controls">
+      <div class="search-wrap">
+        <svg class="search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+        </svg>
+        <input type="text" id="searchInput" class="search-input" placeholder="Filter domains…" />
+        <button class="clear-btn" id="clearSearch" title="Clear">✕</button>
+      </div>
+
+      <div class="control-row">
+        <div class="filter-group">
+          <label class="filter-label">Range</label>
+          <div class="segmented" id="rangeFilter">
+            <button class="seg active" data-range="1">Today</button>
+            <button class="seg" data-range="7">7d</button>
+            <button class="seg" data-range="30">30d</button>
+            <button class="seg" data-range="90">All</button>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <label class="filter-label">Sort</label>
+          <div class="segmented" id="sortFilter">
+            <button class="seg active" data-sort="visits">Most visited</button>
+            <button class="seg" data-sort="recent">Recent</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Loading -->
+    <div class="loading" id="loading">
+      <div class="spinner"></div>
+      <span>Reading history…</span>
+    </div>
+
+    <!-- Empty state -->
+    <div class="empty" id="empty" style="display:none">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.4">
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
+      </svg>
+      <p>No history found for this range</p>
+    </div>
+
+    <!-- Domain list -->
+    <div class="domain-list" id="domainList"></div>
+
+  </div>
+
+  <!-- Visit detail drawer -->
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+  <div class="drawer" id="drawer">
+    <div class="drawer-header">
+      <div class="drawer-title" id="drawerTitle">Visits</div>
+      <button class="drawer-close" id="drawerClose">✕</button>
+    </div>
+    <div class="drawer-visits" id="drawerVisits"></div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
